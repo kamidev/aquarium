@@ -2,7 +2,7 @@ defmodule Aquarium.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Aquarium.RoomChannel
+  channel "aquarium:*", Aquarium.AquariumChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
