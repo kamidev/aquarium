@@ -6,7 +6,7 @@ defmodule Aquarium.World do
   @agent_name __MODULE__
 
   def start_link do
-    Agent.start_link(fn -> %{tangerine: {3, 4}} end, name: @agent_name)
+    Agent.start_link(fn -> %{} end, name: @agent_name)
   end
 
   def min_cell(), do: @min_cell
@@ -19,6 +19,16 @@ defmodule Aquarium.World do
 
   def move_fish(fish, direction) do
     Agent.get_and_update(@agent_name, fn all_fish -> move(all_fish, fish, direction) end)
+  end
+
+  def add_fish(fish) do
+    initial_place = {3, 4}
+    Agent.update(@agent_name, fn all_fish -> Map.put(all_fish, fish, initial_place) end)
+    {fish, initial_place}
+  end
+
+  def remove_fish(fish) do
+    Agent.update(@agent_name, fn all_fish -> Map.delete(all_fish, fish) end)
   end
 
   defp move(all_fish, fish, direction) do

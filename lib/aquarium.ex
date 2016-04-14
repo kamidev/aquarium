@@ -11,6 +11,7 @@ defmodule Aquarium do
       supervisor(Aquarium.Endpoint, []),
       # Here you could define other workers and supervisors as children
       worker(Aquarium.World, []),
+      worker(Aquarium.FreeFish, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
