@@ -18,7 +18,7 @@ function joinGame(response) {
   console.log("Joined the game")
   body.on("keypress", e => {
     let dir = direction(e.which)
-    channel.push("move_fish", {dir: dir, fish: myFish, place: whereIs(myFish) })
+    channel.push("move_fish", {dir: dir, fish: myFish })
   })
 }
 
@@ -35,13 +35,6 @@ function direction(keycode) {
     default:
       return "ignore"
   }
-}
-
-function whereIs(fish) {
-  let currentPos = aquarium.find("." + fish)
-  let x = currentPos.attr("data-x")
-  let y = currentPos.attr("data-y")
-  return {x: parseInt(x), y: parseInt(y)}
 }
 
 function removeFish(fish) {
