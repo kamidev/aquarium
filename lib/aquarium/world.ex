@@ -1,70 +1,62 @@
 defmodule Aquarium.World do
+  use Supervisor
   alias Aquarium.Fish
 
-  @min_cell 0
-  @max_cell 9
-  @agent_name __MODULE__
+  @supervisor_name :mother_of_fish
 
-  def start_link do
-    Agent.start_link(fn -> %{} end, name: @agent_name)
+  def start_link() do
+    Supervisor.start_link(__MODULE__, [], name: @supervisor_name)
   end
 
-  def min_cell(), do: @min_cell
+  def init(_) do
+    supervise([], strategy: :one_for_one)
+  end
 
-  def max_cell(), do: @max_cell
+  def min_cell(), do: Fish.min_cell
+
+  def max_cell(), do: Fish.max_cell
 
   def all_fish() do
-    Agent.get(@agent_name, fn fish -> fish end)
-  end
-
-  def move_fish(fish, direction) do
-    Agent.get_and_update(@agent_name, fn all_fish -> move(all_fish, fish, direction) end)
+    list_fish
+    |> Enum.map(fn fish -> {fish, Fish.where_is(fish)} end)
+    |> Enum.into(%{})
   end
 
   def add_fish(fish) do
-    initial_place = {3, 4}
-    Agent.update(@agent_name, fn all_fish -> Map.put(all_fish, fish, initial_place) end)
-    {fish, initial_place}
+    place = {0, 0}
+    Supervisor.start_child(@supervisor_name, worker(Fish, [fish, place], id: fish))
+    {fish, place}
   end
 
   def remove_fish(fish) do
-    Agent.update(@agent_name, fn all_fish -> Map.delete(all_fish, fish) end)
+    Supervisor.terminate_child(@supervisor_name, fish)
+    Supervisor.delete_child(@supervisor_name, fish)
+    fish
   end
 
-  defp move(all_fish, fish, direction) do
-    place = next(direction, where_is(all_fish, fish))
-    { place, %{ all_fish | fish => place }}
+  def move_fish(fish, direction) do
+    new_place = Fish.move(fish, direction)
+    killed_fish = detect_killings(new_place, fish)
+    kill_fish(killed_fish)
+    { killed_fish, new_place}
   end
 
-  defp where_is(all_fish, fish) do
-    all_fish[fish]
+  defp list_fish() do
+    Supervisor.which_children(@supervisor_name)
+    |> Enum.map(fn tuple -> elem(tuple, 0) end)
   end
 
-  defp next("up", {x, y}) do
-    {x, one_less(y)}
-  end
-  defp next("down", {x, y}) do
-    {x, one_more(y)}
-  end
-  defp next("left", {x, y}) do
-    {one_less(x), y}
-  end
-  defp next("right", {x, y}) do
-    {one_more(x), y}
+  defp detect_killings(place, killer) do
+    list_fish
+    |> Enum.filter(fn fish -> fish != killer end)
+    |> Enum.find(nil, fn fish -> Fish.where_is(fish) == place end)
   end
 
-  defp one_less(@min_cell) do
-    @min_cell
-  end
-  defp one_less(i) do
-    i - 1
-  end
-
-  defp one_more(@max_cell) do
-    @max_cell
-  end
-  defp one_more(i) do
-    i + 1
+  defp kill_fish(nil) do end
+  defp kill_fish(fish) do
+    IO.inspect(to_string(fish) <> " killed")
+    Process.whereis(fish)
+    |> Process.exit(:kill)
   end
 
 end

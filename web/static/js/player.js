@@ -4,6 +4,8 @@ const channel           = socket.channel("aquarium:state", {})
 const body              = $("body")
 const aquarium          = $("#aquarium")
 const fishDisplay       = $("#fish_display")
+const scoreElement      = $("#score")
+let score               = 0
 
 channel.on("fish_added", payload => {
   placeFishAt(payload.fish, payload.place)
@@ -37,6 +39,9 @@ function joinGame(fish, place) {
     let dir = direction(e.which)
     channel.push("move_fish", {dir: dir, fish: fish })
   })
+
+  channel.on("fish_killed", payload => { handleKilling(payload.killer, payload.killed, fish) })
+
   channel.push("fish_added", {fish: fish, place: place})
 }
 
@@ -65,6 +70,17 @@ function placeFishAt(fish, position) {
   let y = position.y
   let newPos = aquarium.find("[data-x=" + x + "][data-y=" + y + "]")
   newPos.removeClass().addClass(fish)
+}
+
+function handleKilling(killer, killed, self) {
+  if (killed === self) {
+    score = 0
+    scoreElement.text(score)
+    channel.push("fish_added", {fish: self, place: {x: 0, y: 0}})
+  }
+  if (killer === self) {
+    scoreElement.text(++score)
+  }
 }
 
 function cleanup(fish) {

@@ -8,10 +8,11 @@
     <td class="<%= content @fish, x, y %>" data-x="<%= x %>" data-y="<%= y %>"></td>
       <%= end %>
   </tr>
-<%= end %>
+  <%= end %>
 </table>
 </div>
 <div id="your_fish" class="col-md-4">
   <h1>Your Fish</h1>
-  <p id="fish_display" class="tangerine"></p>
+  <h4>Score: <span id=score>0</span>
+  <p id="fish_display"></p>
 </div>

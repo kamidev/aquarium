@@ -10,7 +10,8 @@ defmodule Aquarium.AquariumChannel do
   end
 
   def handle_in("move_fish", %{"dir" => dir, "fish" => fish}, socket) do
-    {x, y} = World.move_fish String.to_atom(fish), dir
+    {killed_fish, {x, y}} = World.move_fish String.to_atom(fish), dir
+    handle_killing killed_fish, fish, socket
     broadcast! socket, "fish_moved", %{fish: fish, place: %{x: x, y: y}}
     {:noreply, socket}
   end
@@ -32,6 +33,13 @@ defmodule Aquarium.AquariumChannel do
   end
   defp add_fish_to_world(fish) do
     World.add_fish(fish)
+  end
+
+  defp handle_killing(nil, _killer_fish, _socket) do
+  end
+  defp handle_killing(killed_fish, killer_fish, socket) do
+    broadcast! socket, "fish_killed",
+      %{killed: to_string(killed_fish), killer: to_string(killer_fish)}
   end
 
 end
