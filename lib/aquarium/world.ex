@@ -1,5 +1,4 @@
 defmodule Aquarium.World do
-  alias Aquarium.Fish
 
   @min_cell 0
   @max_cell 9
@@ -14,16 +13,22 @@ defmodule Aquarium.World do
   def max_cell(), do: @max_cell
 
   def all_fish() do
-    Agent.get(@agent_name, fn fish -> fish end)
+    fish = Agent.get(@agent_name, fn fish -> :timer.sleep(1000)
+    fish end)
+    fish
   end
 
   def move_fish(fish, direction) do
-    Agent.get_and_update(@agent_name, fn all_fish -> move(all_fish, fish, direction) end)
+    Agent.cast(@agent_name, fn all_fish -> move(all_fish, fish, direction) end)
   end
 
   defp move(all_fish, fish, direction) do
-    place = next(direction, where_is(all_fish, fish))
-    { place, %{ all_fish | fish => place }}
+    :timer.sleep(1000)
+    IO.inspect self()
+    IO.inspect direction
+    {x, y} = next(direction, where_is(all_fish, fish))
+    Aquarium.Endpoint.broadcast! "aquarium:state", "fish_moved", %{fish: fish, place: %{x: x, y: y}}
+    %{ all_fish | fish => {x, y}}
   end
 
   defp where_is(all_fish, fish) do

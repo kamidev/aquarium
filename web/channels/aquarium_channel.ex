@@ -7,8 +7,8 @@ defmodule Aquarium.AquariumChannel do
   end
 
   def handle_in("move_fish", %{"dir" => dir, "fish" => fish}, socket) do
-    {x, y} = World.move_fish String.to_atom(fish), dir
-    broadcast! socket, "fish_moved", %{fish: fish, place: %{x: x, y: y}}
+    World.move_fish String.to_atom(fish), dir
+    #broadcast! socket, "fish_moved", %{fish: fish, place: %{x: x, y: y}}
     {:noreply, socket}
   end
 
