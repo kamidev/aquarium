@@ -76,7 +76,6 @@ function handleKilling(killer, killed, self) {
   if (killed === self) {
     score = 0
     scoreElement.text(score)
-    channel.push("fish_added", {fish: self, place: {x: 0, y: 0}})
   }
   if (killer === self) {
     scoreElement.text(++score)

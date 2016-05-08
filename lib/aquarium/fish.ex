@@ -4,9 +4,10 @@ defmodule Aquarium.Fish do
   @min_cell 0
   @max_cell 9
 
-  def start_link(fish_name, initial_place) do
-    IO.inspect(to_string(fish_name) <> " (re)born")
-    Agent.start_link(fn -> initial_place end, name: fish_name)
+  def start_link(fish_name, {x, y}) do
+    IO.puts(to_string(fish_name) <> " (re)born")
+    Aquarium.Endpoint.broadcast! "aquarium:state", "fish_added", %{fish: fish_name, place: %{x: x, y: y}}
+    Agent.start_link(fn -> {x, y} end, name: fish_name)
   end
 
   def min_cell(), do: @min_cell

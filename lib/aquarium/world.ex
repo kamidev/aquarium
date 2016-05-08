@@ -23,7 +23,7 @@ defmodule Aquarium.World do
   end
 
   def add_fish(fish) do
-    place = {0, 0}
+    place = {3, 4}
     Supervisor.start_child(@supervisor_name, worker(Fish, [fish, place], id: fish))
     {fish, place}
   end
