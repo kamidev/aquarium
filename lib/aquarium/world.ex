@@ -23,9 +23,8 @@ defmodule Aquarium.World do
   end
 
   def add_fish(fish) do
-    place = {3, 4}
-    Supervisor.start_child(@supervisor_name, worker(Fish, [fish, place], id: fish))
-    {fish, place}
+    Supervisor.start_child(@supervisor_name, worker(Fish, [fish], id: fish))
+    {fish, Fish.where_is(fish)}
   end
 
   def remove_fish(fish) do

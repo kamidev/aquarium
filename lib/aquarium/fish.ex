@@ -4,7 +4,8 @@ defmodule Aquarium.Fish do
   @min_cell 0
   @max_cell 9
 
-  def start_link(fish_name, {x, y}) do
+  def start_link(fish_name) do
+    {x, y} = {random_coordinate, random_coordinate}
     IO.puts(to_string(fish_name) <> " (re)born")
     Aquarium.Endpoint.broadcast! "aquarium:state", "fish_added", %{fish: fish_name, place: %{x: x, y: y}}
     Agent.start_link(fn -> {x, y} end, name: fish_name)
@@ -52,6 +53,10 @@ defmodule Aquarium.Fish do
   end
   defp one_more(i) do
     i + 1
+  end
+
+  defp random_coordinate do
+    :rand.uniform(@max_cell + 1) - 1
   end
 
 end
