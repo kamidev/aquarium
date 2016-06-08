@@ -27,17 +27,10 @@ defmodule Aquarium.AquariumChannel do
     {one_more(x), y}
   end
 
-  defp one_less(@min_cell) do
-    @min_cell
-  end
-  defp one_less(i) do
-    i - 1
-  end
+  defp one_less(@min_cell), do: @min_cell
+  defp one_less(i), do: i - 1
 
-  defp one_more(@max_cell) do
-    @max_cell
-  end
-  defp one_more(i) do
-    i + 1
-  end
+  defp one_more(@max_cell), do: @max_cell
+  defp one_more(i), do: i + 1
+
 end
