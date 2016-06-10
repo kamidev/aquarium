@@ -40,6 +40,10 @@ defmodule Aquarium.Fish do
   defp next("right", {x, y}) do
     {one_more(x), y}
   end
+  # Too many quick key presses. Ignore it.
+  defp next("ignore", {x, y}) do
+   {x, y}
+  end
 
   defp one_less(@min_cell) do
     @min_cell
