@@ -43,6 +43,7 @@ defmodule Aquarium.Fish do
   # Handle ignored key presses
   defp next(_, {x, y}) do
     {x,y}
+  end  
 
   defp one_less(@min_cell) do
     @min_cell
