@@ -3,7 +3,7 @@ defmodule Aquarium.FreeFish do
   @agent_name __MODULE__
 
   def start_link do
-    Agent.start_link(fn -> [ :tangerine, :yellow, :torskblock, :blue, :cooked, :red, :puffer, :teal ] end, name: @agent_name)
+    Agent.start_link(fn -> [:tangerine, :yellow, :torskblock, :blue, :cooked, :red, :puffer, :teal] end, name: @agent_name)
   end
 
   def get_free_fish do
@@ -17,12 +17,12 @@ defmodule Aquarium.FreeFish do
   defp pop_fish([]) do
     {nil, []}
   end
-  defp pop_fish([ first | rest ]) do
+  defp pop_fish([first | rest]) do
     {first, rest}
   end
 
   defp push_fish(fish, free_fish) do
-    [ fish | free_fish ]
+    [fish | free_fish]
   end
 
 end

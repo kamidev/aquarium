@@ -37,7 +37,7 @@ defmodule Aquarium.World do
     new_place = Fish.move(fish, direction)
     killed_fish = detect_killings(new_place, fish)
     kill_fish(killed_fish)
-    { killed_fish, new_place}
+    {killed_fish, new_place}
   end
 
   defp list_fish() do
@@ -53,9 +53,7 @@ defmodule Aquarium.World do
 
   defp kill_fish(nil) do end
   defp kill_fish(fish) do
-    IO.inspect(to_string(fish) <> " killed")
-    Process.whereis(fish)
-    |> Process.exit(:kill)
+    Process.whereis(fish) |> Process.exit(:kill)
   end
 
 end

@@ -4,9 +4,11 @@ defmodule Aquarium.AquariumChannel do
   alias Aquarium.World
 
   def join("aquarium:state", _message, socket) do
-    {fish, {x, y}} = FreeFish.get_free_fish()
-    |> add_fish_to_world
-    {:ok, %{ :fish => fish, :place => %{x: x, y: y}}, Phoenix.Socket.assign(socket, :fish, fish) }
+    {fish, {x, y}} = FreeFish.get_free_fish() 
+                      |> add_fish_to_world
+    {:ok, %{:fish => fish, :place => %{x: x, y: y}}, 
+     Phoenix.Socket.assign(socket, :fish, fish)
+   }
   end
 
   def handle_in("move_fish", %{"dir" => dir, "fish" => fish}, socket) do
