@@ -4,7 +4,7 @@ defmodule Aquarium.Mixfile do
   def project do
     [app: :aquarium,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.3.1",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -29,10 +29,11 @@ defmodule Aquarium.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.1.4"},
-      {:phoenix_html, "~> 2.4"},
+      {:phoenix, "~> 1.2.0"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.9"},
+      {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:credo, "~> 0.4.5", only: [:dev, :test]}
     ]
