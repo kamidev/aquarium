@@ -1,8 +1,11 @@
 # Aquarium
 
-*This is a fork of: https://github.com/frusunnanbo/aquarium*
-
 Build status on Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
+
+*This is a fork of: https://github.com/frusunnanbo/aquarium*. 
+
+*The author's excellent demo slides are here: https://github.com/frusunnanbo/aquarium/tree/master/doc*
+
 
 To start your Phoenix app:
 
