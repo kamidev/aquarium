@@ -1,6 +1,6 @@
 # Aquarium
 
-Build status on Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
+Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
 
 *This is a fork of: https://github.com/frusunnanbo/aquarium*. 
 
