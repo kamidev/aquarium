@@ -1,6 +1,7 @@
 # Aquarium
 
 Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
+Semaphore: [![Build Status](https://semaphoreci.com/api/v1/kamidev/aquarium/branches/old_elixir/badge.svg)](https://semaphoreci.com/kamidev/aquarium)
 
 *This is a fork of: https://github.com/frusunnanbo/aquarium*. 
 
