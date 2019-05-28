@@ -17,7 +17,7 @@ defmodule Aquarium.World do
   def max_cell(), do: Fish.max_cell
 
   def all_fish() do
-    list_fish
+    list_fish()
     |> Enum.map(fn fish -> {fish, Fish.where_is(fish)} end)
     |> Enum.into(%{})
   end
@@ -41,19 +41,22 @@ defmodule Aquarium.World do
   end
 
   defp list_fish() do
-    Supervisor.which_children(@supervisor_name)
+    @supervisor_name
+    |> Supervisor.which_children
     |> Enum.map(fn tuple -> elem(tuple, 0) end)
   end
 
   defp detect_killings(place, killer) do
-    list_fish
+    list_fish()
     |> Enum.filter(fn fish -> fish != killer end)
     |> Enum.find(nil, fn fish -> Fish.where_is(fish) == place end)
   end
 
   defp kill_fish(nil) do end
   defp kill_fish(fish) do
-    Process.whereis(fish) |> Process.exit(:kill)
+    fish
+    |> Process.whereis()
+    |> Process.exit(:kill)
   end
 
 end

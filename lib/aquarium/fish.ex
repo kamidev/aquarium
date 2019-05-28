@@ -5,7 +5,7 @@ defmodule Aquarium.Fish do
   @max_cell 9
 
   def start_link(fish_name) do
-    {x, y} = {random_coordinate, random_coordinate}
+    {x, y} = {random_coordinate(), random_coordinate()}
     IO.puts(to_string(fish_name) <> " (re)born")
     Aquarium.Endpoint.broadcast! "aquarium:state", "fish_added", %{fish: fish_name, place: %{x: x, y: y}}
     Agent.start_link(fn -> {x, y} end, name: fish_name)
@@ -42,8 +42,8 @@ defmodule Aquarium.Fish do
   end
   # Handle ignored key presses
   defp next(_, {x, y}) do
-    {x,y}
-  end  
+    {x, y}
+  end
 
   defp one_less(@min_cell) do
     @min_cell
