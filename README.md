@@ -1,27 +1,20 @@
 # Aquarium
 
 Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
-Semaphore: [![Build Status](https://semaphoreci.com/api/v1/kamidev/aquarium/branches/old_elixir/badge.svg)](https://semaphoreci.com/kamidev/aquarium)
 
-*This is a fork of: https://github.com/frusunnanbo/aquarium*. 
+Testing https://github.com/marketplace/dependabot-preview using some three year old Elixir sample code.
+For code that old, a manual update process is necessary. But looking at automatically generated pull requests may give you somewhere to start.
 
-*The author's excellent demo slides are here: https://github.com/frusunnanbo/aquarium/tree/master/doc*
+## Installing
 
+- Install dependencies with `mix deps.get`
+- Install Javascript dependencies with `npm install`
+- Start Phoenix application with `mix phx.server`
 
-To start your Phoenix app:
+## Running
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+- Go to [`localhost:4000`](http://localhost:4000) to see your aquarium.
+- Move fish using keyboard keys: h, j, k and l
+- Open additional windows for multiplayer
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+<i>Author of original code has excellent demo slides here: https://github.com/frusunnanbo/aquarium/tree/master/doc.
