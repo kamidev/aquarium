@@ -6,9 +6,9 @@
 <%= for y <- @min_cell..@max_cell do %>
   <tr><%= for x <- @min_cell..@max_cell do %>
     <td class="<%= content @fish, x, y %>" data-x="<%= x %>" data-y="<%= y %>"></td>
-      <%= end %>
+      <% end %>
   </tr>
-  <%= end %>
+  <% end %>
 </table>
 </div>
 <div id="your_fish" class="col-md-4">
