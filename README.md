@@ -3,7 +3,8 @@
 Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
 
 Testing https://github.com/marketplace/dependabot-preview using some three year old Elixir sample code.
-For code that old, a manual update process is necessary. But looking at automatically generated pull requests may give you somewhere to start.
+For code that old, a manual update process was necessary to get started. 
+But looking at automatically generated pull requests can be a good start after that.
 
 ## Installing
 
