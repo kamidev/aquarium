@@ -30,7 +30,6 @@ jobs:
           keys:
             - v3-plt-cache-{{ checksum "mix.lock" }}
             - v3-plt-cache
-      - run: mix dialyzer --plt
       - save_cache:
           key: v3-plt-cache-{{ checksum "mix.lock" }}
           paths:
