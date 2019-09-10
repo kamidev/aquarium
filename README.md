@@ -1,6 +1,8 @@
 # Aquarium
 
-Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium)
+Travis CI: [![Build Status](https://travis-ci.org/kamidev/aquarium.svg?branch=master)](https://travis-ci.org/kamidev/aquarium) 
+
+Circle CI: [![CircleCI](https://circleci.com/gh/kamidev/aquarium.svg?style=svg)](https://circleci.com/gh/kamidev/aquarium)
 
 Testing https://github.com/marketplace/dependabot-preview using some three year old Elixir sample code.
 For code that old, a manual update process was necessary to get started. 
