@@ -36,7 +36,7 @@ defmodule Aquarium.Mixfile do
       {:gettext, "~> 0.18.0"},
       {:plug_cowboy, "~> 2.3.0"},
       {:jason, "~> 1.2.0"},
-      {:credo, "~> 1.4.0", only: [:dev, :test]}
+      {:credo, "~> 1.5.0", only: [:dev, :test]}
     ]
   end
 end
