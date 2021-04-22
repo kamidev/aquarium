@@ -34,7 +34,7 @@ defmodule Aquarium.Mixfile do
       {:phoenix_html, "~> 2.14.0"},
       {:phoenix_live_reload, "~> 1.3.0", only: :dev},
       {:gettext, "~> 0.18.0"},
-      {:plug_cowboy, "~> 2.4.1"},
+      {:plug_cowboy, "~> 2.5.0"},
       {:jason, "~> 1.2.0"},
       {:credo, "~> 1.5.0", only: [:dev, :test]}
     ]
